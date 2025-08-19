@@ -1,0 +1,27 @@
+{
+  "name": "Game",
+  "type": "object",
+  "properties": {
+    "player_x_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Pontuação do jogador X"
+    },
+    "player_o_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Pontuação do jogador O"
+    },
+    "draws": {
+      "type": "number",
+      "default": 0,
+      "description": "Número de empates"
+    },
+    "total_games": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de jogos"
+    }
+  },
+  "required": []
+}

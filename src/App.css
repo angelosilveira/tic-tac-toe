@@ -1,43 +1,207 @@
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+.tic-tac-toe-game {
+  min-height: 100vh;
+  background: var(--color-background, #f8fafc);
+  padding: 1rem;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.game-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.game-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-textPrimary, #1f2937);
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary, #1e40af),
+    var(--color-secondary, #10b981)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.game-subtitle {
+  color: var(--color-textSecondary, #6b7280);
   margin: 0;
-  padding: 0;
+  font-size: 0.875rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.game-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 2rem;
+  align-items: start;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.center-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.board-container {
+  position: relative;
+}
+
+.game-info {
+  background: var(--color-boardBg, #ffffff);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--color-primary, #1e40af);
+}
+
+.instructions h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-textPrimary, #1f2937);
+}
+
+.instructions ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--color-textSecondary, #6b7280);
+}
+
+.instructions li {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.instructions li:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .game-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .left-panel,
+  .right-panel {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .right-panel {
+    order: -1;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 768px) {
+  .tic-tac-toe-game {
+    padding: 0.5rem;
+  }
+
+  .game-title {
+    font-size: 2rem;
+  }
+
+  .game-layout {
+    gap: 1rem;
+  }
+
+  .left-panel,
+  .right-panel {
+    max-width: none;
+  }
+
+  .game-info {
+    padding: 1rem;
   }
 }
 
-.card {
-  padding: 2em;
+.theme-switcher {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
-.read-the-docs {
-  color: #888;
+.theme-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.theme-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: var(--color-boardBg);
+  color: var(--color-textPrimary);
+  border: 2px solid transparent;
+}
+
+.theme-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.theme-button.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: white;
+}
+
+.theme-button.default {
+  background: #ffffff;
+  color: #1f2937;
+}
+
+.theme-button.dark {
+  background: #1f2937;
+  color: #f9fafb;
+}
+
+.theme-button.neon {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.theme-button.sunset {
+  background: #ffffff;
+  color: #92400e;
+}
+
+@media (max-width: 480px) {
+  .game-title {
+    font-size: 1.75rem;
+  }
+
+  .game-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .theme-buttons {
+    gap: 0.25rem;
+  }
+
+  .theme-button {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }

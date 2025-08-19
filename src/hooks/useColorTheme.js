@@ -51,7 +51,6 @@ export const useColorTheme = () => {
   const applyTheme = (theme) => {
     setCurrentTheme(theme);
 
-    // Aplicar CSS custom properties
     Object.entries(theme).forEach(([key, value]) => {
       document.documentElement.style.setProperty(`--color-${key}`, value);
     });

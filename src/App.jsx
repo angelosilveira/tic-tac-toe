@@ -40,7 +40,6 @@ export default function App() {
     autoMove
   );
 
-  // Gerenciar timer baseado no estado do jogo
   useEffect(() => {
     if (gameStatus === "playing") {
       startTimer();
@@ -49,7 +48,6 @@ export default function App() {
     }
   }, [gameStatus, currentPlayer, startTimer, stopTimer]);
 
-  // Reset timer quando jogador faz movimento
   useEffect(() => {
     if (gameStatus === "playing") {
       resetTimer();
@@ -70,13 +68,11 @@ export default function App() {
     resetTimer();
   };
 
-  // Replace the database loading effect with:
   useEffect(() => {
     const savedScores = useLocalStorage.loadScores();
     setScores(savedScores);
   }, []);
 
-  // Replace handleUpdateScore with:
   const handleUpdateScore = (result) => {
     let newScores = { ...scores };
 
@@ -92,14 +88,12 @@ export default function App() {
     useLocalStorage.saveScores(newScores);
   };
 
-  // Replace handleResetScores with:
   const handleResetScores = () => {
     const newScores = { playerXScore: 0, playerOScore: 0, draws: 0 };
     setScores(newScores);
     useLocalStorage.resetScores();
   };
 
-  // Aplicar tema inicial
   useEffect(() => {
     selectPresetTheme("default");
   }, []);

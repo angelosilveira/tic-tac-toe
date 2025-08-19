@@ -20,7 +20,7 @@ const ColorMenu = ({
       setIsClosing(true);
       const timer = setTimeout(() => {
         setIsRendered(false);
-      }, 300); // Animation duration
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [isOpen, isRendered]);

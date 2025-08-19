@@ -3,18 +3,18 @@ import { useState, useCallback } from "react";
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
-  [6, 7, 8], // Linhas
+  [6, 7, 8],
   [0, 3, 6],
   [1, 4, 7],
-  [2, 5, 8], // Colunas
+  [2, 5, 8],
   [0, 4, 8],
-  [2, 4, 6], // Diagonais
+  [2, 4, 6],
 ];
 
 export const useGameLogic = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [currentPlayer, setCurrentPlayer] = useState("X");
-  const [gameStatus, setGameStatus] = useState("playing"); // 'playing', 'won', 'draw'
+  const [gameStatus, setGameStatus] = useState("playing");
   const [winner, setWinner] = useState(null);
   const [winningLine, setWinningLine] = useState([]);
 

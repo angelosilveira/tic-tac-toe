@@ -28,6 +28,7 @@ export const SquareButton = styled.button`
   justify-content: center;
   position: relative;
   overflow: hidden;
+  max-width: 96px;
 
   &:hover:not(:disabled) {
     transform: scale(1.05);

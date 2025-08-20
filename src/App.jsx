@@ -111,6 +111,36 @@ export default function App() {
     selectPresetTheme("default");
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (gameStatus !== "playing") return;
+
+      const keyToIndex = {
+        1: 0,
+        2: 1,
+        3: 2,
+        4: 3,
+        5: 4,
+        6: 5,
+        7: 6,
+        8: 7,
+        9: 8,
+      };
+
+      const index = keyToIndex[e.key];
+      if (index !== undefined && !board[index]) {
+        handleSquareClick(index);
+      }
+
+      if (e.key === "r" || e.key === "R") {
+        handleNewGame();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [gameStatus, board]);
+
   return (
     <GameWrapper>
       <GameContainer>
@@ -197,6 +227,9 @@ export default function App() {
               <div>
                 <InstructionsTitle>Como Jogar</InstructionsTitle>
                 <InstructionsList>
+                  <InstructionItem>
+                    Clique em uma célula ou use as teclas 1-9
+                  </InstructionItem>
                   <InstructionItem>
                     Você tem 5 segundos por jogada
                   </InstructionItem>

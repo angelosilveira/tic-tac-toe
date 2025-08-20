@@ -201,9 +201,6 @@ export default function App() {
                 <InstructionsTitle>Como Jogar</InstructionsTitle>
                 <InstructionsList>
                   <InstructionItem>
-                    Clique em uma célula ou use as teclas 1-9
-                  </InstructionItem>
-                  <InstructionItem>
                     Você tem 5 segundos por jogada
                   </InstructionItem>
                   <InstructionItem>Forme uma linha para vencer</InstructionItem>

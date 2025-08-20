@@ -1,6 +1,15 @@
 import React from "react";
 import { Trophy, Users, RotateCcw } from "lucide-react";
-import "./GameStatus.styles.css";
+import {
+  GameStatusContainer,
+  StatusContent,
+  Announcement,
+  TrophyIcon,
+  DrawIcon,
+  StatusTitle,
+  StatusMessage,
+  NewGameButton,
+} from "./GameStatus.styles";
 
 const GameStatus = ({ gameStatus, winner, onNewGame, onUpdateScore }) => {
   const handleNewGame = () => {
@@ -17,28 +26,32 @@ const GameStatus = ({ gameStatus, winner, onNewGame, onUpdateScore }) => {
   }
 
   return (
-    <div className="game-status">
-      <div className="status-content">
+    <GameStatusContainer>
+      <StatusContent>
         {gameStatus === "won" ? (
-          <div className="winner-announcement">
-            <Trophy className="trophy-icon" size={32} />
-            <h2 className="status-title">Jogador {winner} Venceu!</h2>
-            <p className="status-message">Parabéns pela vitória!</p>
-          </div>
+          <Announcement>
+            <TrophyIcon>
+              <Trophy size={32} />
+            </TrophyIcon>
+            <StatusTitle>Jogador {winner} Venceu!</StatusTitle>
+            <StatusMessage>Parabéns pela vitória!</StatusMessage>
+          </Announcement>
         ) : (
-          <div className="draw-announcement">
-            <Users className="draw-icon" size={32} />
-            <h2 className="status-title">Empate!</h2>
-            <p className="status-message">Que jogo equilibrado!</p>
-          </div>
+          <Announcement>
+            <DrawIcon>
+              <Users size={32} />
+            </DrawIcon>
+            <StatusTitle>Empate!</StatusTitle>
+            <StatusMessage>Que jogo equilibrado!</StatusMessage>
+          </Announcement>
         )}
 
-        <button className="new-game-button" onClick={handleNewGame}>
+        <NewGameButton onClick={handleNewGame}>
           <RotateCcw size={20} />
           Novo Jogo
-        </button>
-      </div>
-    </div>
+        </NewGameButton>
+      </StatusContent>
+    </GameStatusContainer>
   );
 };
 

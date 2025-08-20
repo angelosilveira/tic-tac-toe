@@ -1,6 +1,6 @@
 import React from "react";
 import Square from "../Square";
-import "./GameBoard.styles.css";
+import { GameBoardContainer, BoardGrid } from "./GameBoard.styles";
 
 const GameBoard = ({
   board,
@@ -9,8 +9,8 @@ const GameBoard = ({
   disabled = false,
 }) => {
   return (
-    <div className="game-board">
-      <div className="board-grid">
+    <GameBoardContainer>
+      <BoardGrid>
         {board.map((value, index) => (
           <Square
             key={index}
@@ -21,8 +21,8 @@ const GameBoard = ({
             disabled={disabled}
           />
         ))}
-      </div>
-    </div>
+      </BoardGrid>
+    </GameBoardContainer>
   );
 };
 

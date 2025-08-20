@@ -1,5 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Palette, X, Check } from "lucide-react";
+import {
+  ColorMenuTrigger,
+  ColorMenuBackdrop,
+  ColorMenuContainer,
+  ColorMenuHeader,
+  ColorMenuTitle,
+  CloseButton,
+  ColorMenuTabs,
+  Tab,
+  ColorMenuContent,
+  PresetThemes,
+  PresetThemeButton,
+  ThemePreview,
+  ColorDot,
+  ThemeName,
+  SelectedIcon,
+  CustomColors,
+  ColorInputGroup,
+  ColorLabel,
+  ColorInputWrapper,
+  ColorInput,
+  ColorPreview,
+} from "./ColorMenu.styles";
 
 const ColorMenu = ({
   isOpen,
@@ -40,77 +63,56 @@ const ColorMenu = ({
 
   return (
     <>
-      <button
-        className="color-menu-trigger"
-        onClick={onToggle}
-        aria-label="Menu de cores"
-      >
+      <ColorMenuTrigger onClick={onToggle} aria-label="Menu de cores">
         <Palette size={20} />
-      </button>
+      </ColorMenuTrigger>
 
       <>
-        <div
-          className={`color-menu-backdrop ${isClosing ? "closing" : ""}`}
+        <ColorMenuBackdrop
+          className={isClosing ? "closing" : ""}
           onClick={onToggle}
         />
-        <div className={`color-menu ${isClosing ? "closing" : ""}`}>
-          <div className="color-menu-header">
-            <div className="color-menu-title">
+        <ColorMenuContainer className={isClosing ? "closing" : ""}>
+          <ColorMenuHeader>
+            <ColorMenuTitle>
               <Palette size={20} />
               <h3>Personalizar Cores</h3>
-            </div>
-            <button
-              className="close-button"
-              onClick={onToggle}
-              aria-label="Fechar menu"
-            >
+            </ColorMenuTitle>
+            <CloseButton onClick={onToggle} aria-label="Fechar menu">
               <X size={20} />
-            </button>
-          </div>
+            </CloseButton>
+          </ColorMenuHeader>
 
-          <div className="color-menu-tabs">
-            <button
-              className={`tab ${activeTab === "presets" ? "active" : ""}`}
+          <ColorMenuTabs>
+            <Tab
+              className={activeTab === "presets" ? "active" : ""}
               onClick={() => setActiveTab("presets")}
             >
               Temas Prontos
-            </button>
-            <button
-              className={`tab ${activeTab === "custom" ? "active" : ""}`}
+            </Tab>
+            <Tab
+              className={activeTab === "custom" ? "active" : ""}
               onClick={() => setActiveTab("custom")}
             >
               Personalizado
-            </button>
-          </div>
+            </Tab>
+          </ColorMenuTabs>
 
-          <div className="color-menu-content">
+          <ColorMenuContent>
             {activeTab === "presets" && (
-              <div className="preset-themes">
+              <PresetThemes>
                 {Object.entries(presetThemes).map(([key, preset]) => (
-                  <button
+                  <PresetThemeButton
                     key={key}
-                    className="preset-theme"
                     onClick={() => onThemeChange.selectPresetTheme(key)}
                   >
-                    <div className="theme-preview">
-                      <div
-                        className="color-dot"
-                        style={{ backgroundColor: preset.primary }}
-                      />
-                      <div
-                        className="color-dot"
-                        style={{ backgroundColor: preset.secondary }}
-                      />
-                      <div
-                        className="color-dot"
-                        style={{ backgroundColor: preset.xColor }}
-                      />
-                      <div
-                        className="color-dot"
-                        style={{ backgroundColor: preset.oColor }}
-                      />
-                    </div>
-                    <span className="theme-name">
+                    <ThemePreview>
+                      <ColorDot color={preset.primary} />
+                      <ColorDot color={preset.secondary} />
+                      <ColorDot color={preset.xColor} />
+                      <ColorDot color={preset.oColor} />
+                    </ThemePreview>
+                    <ThemeName>
                       {key === "default"
                         ? "Padrão"
                         : key === "dark"
@@ -120,43 +122,39 @@ const ColorMenu = ({
                         : key === "sunset"
                         ? "Pôr do Sol"
                         : key}
-                    </span>
+                    </ThemeName>
                     {JSON.stringify(theme) === JSON.stringify(preset) && (
-                      <Check size={16} className="selected-icon" />
+                      <SelectedIcon>
+                        <Check size={16} />
+                      </SelectedIcon>
                     )}
-                  </button>
+                  </PresetThemeButton>
                 ))}
-              </div>
+              </PresetThemes>
             )}
 
             {activeTab === "custom" && (
-              <div className="custom-colors">
+              <CustomColors>
                 {Object.entries(colorLabels).map(([key, label]) => (
-                  <div key={key} className="color-input-group">
-                    <label htmlFor={`color-${key}`} className="color-label">
-                      {label}
-                    </label>
-                    <div className="color-input-wrapper">
-                      <input
+                  <ColorInputGroup key={key}>
+                    <ColorLabel htmlFor={`color-${key}`}>{label}</ColorLabel>
+                    <ColorInputWrapper>
+                      <ColorInput
                         id={`color-${key}`}
                         type="color"
                         value={theme[key]}
                         onChange={(e) =>
                           onThemeChange.updateColor(key, e.target.value)
                         }
-                        className="color-input"
                       />
-                      <div
-                        className="color-preview"
-                        style={{ backgroundColor: theme[key] }}
-                      />
-                    </div>
-                  </div>
+                      <ColorPreview color={theme[key]} />
+                    </ColorInputWrapper>
+                  </ColorInputGroup>
                 ))}
-              </div>
+              </CustomColors>
             )}
-          </div>
-        </div>
+          </ColorMenuContent>
+        </ColorMenuContainer>
       </>
     </>
   );

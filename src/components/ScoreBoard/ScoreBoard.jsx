@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Trophy, Target, Users } from "lucide-react";
-import "./ScoreBoard.styles.css";
+import {
+  ScoreBoardContainer,
+  ScoreBoardHeader,
+  TrophyIcon,
+  ScoreBoardTitle,
+  ScoreGrid,
+  ScoreItem,
+  ScoreLabel,
+  PlayerSymbol,
+  ScoreValue,
+  ScoreBoardFooter,
+  TotalGames,
+  ResetButton,
+} from "./ScoreBoard.styles";
 
 const ScoreBoard = ({ scores, onReset }) => {
   const { playerXScore = 0, playerOScore = 0, draws = 0 } = scores;
@@ -32,70 +45,59 @@ const ScoreBoard = ({ scores, onReset }) => {
   }, [draws]);
 
   return (
-    <div className="scoreboard">
-      <div className="scoreboard-header">
-        <Trophy className="trophy-icon" size={24} />
-        <h2 className="scoreboard-title">Placar</h2>
-      </div>
+    <ScoreBoardContainer>
+      <ScoreBoardHeader>
+        <TrophyIcon>
+          <Trophy size={24} />
+        </TrophyIcon>
+        <ScoreBoardTitle>Placar</ScoreBoardTitle>
+      </ScoreBoardHeader>
 
-      <div className="score-grid">
-        <div className="score-item player-x">
-          <div className="score-label">
-            <span className="player-symbol">X</span>
+      <ScoreGrid>
+        <ScoreItem playerType="x">
+          <ScoreLabel>
+            <PlayerSymbol player="x">X</PlayerSymbol>
             <span>Jogador X</span>
-          </div>
-          <div
-            className={`score-value ${animateX ? "score-updated" : ""}`}
-            key={playerXScore}
-          >
+          </ScoreLabel>
+          <ScoreValue updated={animateX} key={playerXScore}>
             {playerXScore}
-          </div>
-        </div>
+          </ScoreValue>
+        </ScoreItem>
 
-        <div className="score-item player-o">
-          <div className="score-label">
-            <span className="player-symbol">O</span>
+        <ScoreItem playerType="o">
+          <ScoreLabel>
+            <PlayerSymbol player="o">O</PlayerSymbol>
             <span>Jogador O</span>
-          </div>
-          <div
-            className={`score-value ${animateO ? "score-updated" : ""}`}
-            key={playerOScore}
-          >
+          </ScoreLabel>
+          <ScoreValue updated={animateO} key={playerOScore}>
             {playerOScore}
-          </div>
-        </div>
+          </ScoreValue>
+        </ScoreItem>
 
-        <div className="score-item draws">
-          <div className="score-label">
+        <ScoreItem>
+          <ScoreLabel>
             <Users size={16} />
             <span>Empates</span>
-          </div>
-          <div
-            className={`score-value ${animateDraw ? "score-updated" : ""}`}
-            key={draws}
-          >
+          </ScoreLabel>
+          <ScoreValue updated={animateDraw} key={draws}>
             {draws}
-          </div>
-        </div>
-      </div>
+          </ScoreValue>
+        </ScoreItem>
+      </ScoreGrid>
 
-      <div className="scoreboard-footer">
-        <div className="total-games">
+      <ScoreBoardFooter>
+        <TotalGames>
           <Target size={16} />
           <span>Total: {totalGames} jogos</span>
-        </div>
+        </TotalGames>
 
         {totalGames > 0 && (
-          <button
-            className="reset-button"
-            onClick={onReset}
-            aria-label="Resetar placar"
-          >
+          <ResetButton onClick={onReset} aria-label="Resetar placar">
             Resetar Placar
-          </button>
+          </ResetButton>
         )}
-      </div>
-    </div>
+      </ScoreBoardFooter>
+    </ScoreBoardContainer>
   );
 };
 

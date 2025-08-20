@@ -1,5 +1,5 @@
 import React from "react";
-import "./Square.styles.css";
+import { SquareButton, Mark } from "./Square.styles";
 
 const Square = ({
   value,
@@ -22,22 +22,18 @@ const Square = ({
   };
 
   return (
-    <button
-      className={`square ${isWinning ? "winning" : ""} ${
-        disabled ? "disabled" : ""
-      }`}
+    <SquareButton
       onClick={handleClick}
       onKeyDown={handleKeyPress}
       disabled={disabled || !!value}
+      isWinning={isWinning}
       tabIndex={disabled || value ? -1 : 0}
       aria-label={`Quadrado ${index + 1}${
         value ? `, ocupado por ${value}` : ", vazio"
       }`}
     >
-      {value && (
-        <span className={`mark mark-${value.toLowerCase()}`}>{value}</span>
-      )}
-    </button>
+      {value && <Mark value={value}>{value}</Mark>}
+    </SquareButton>
   );
 };
 

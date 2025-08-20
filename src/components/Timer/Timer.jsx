@@ -1,32 +1,39 @@
 import React from "react";
 import { Clock } from "lucide-react";
-import "./Timer.styles.css";
+import {
+  TimerContainer,
+  TimerContent,
+  TimerIcon,
+  TimerInfo,
+  PlayerTurn,
+  TimeDisplay,
+  TimeNumber,
+  TimerBar,
+  TimerProgress,
+} from "./Timer.styles";
 
 const Timer = ({ timeLeft, currentPlayer }) => {
   const percentage = (timeLeft / 5) * 100;
   const isLowTime = timeLeft <= 2;
 
   return (
-    <div className="timer-container">
-      <div className="timer-content">
-        <Clock className="timer-icon" size={20} />
-        <div className="timer-info">
-          <span className="player-turn">Vez do jogador {currentPlayer}</span>
-          <div className="time-display">
-            <span className={`time-number ${isLowTime ? "low-time" : ""}`}>
-              {timeLeft}s
-            </span>
-          </div>
-        </div>
-      </div>
+    <TimerContainer>
+      <TimerContent>
+        <TimerIcon>
+          <Clock size={20} />
+        </TimerIcon>
+        <TimerInfo>
+          <PlayerTurn>Vez do jogador {currentPlayer}</PlayerTurn>
+          <TimeDisplay>
+            <TimeNumber isLowTime={isLowTime}>{timeLeft}s</TimeNumber>
+          </TimeDisplay>
+        </TimerInfo>
+      </TimerContent>
 
-      <div className="timer-bar">
-        <div
-          className={`timer-progress ${isLowTime ? "urgent" : ""}`}
-          style={{ width: `${percentage}%` }}
-        />
-      </div>
-    </div>
+      <TimerBar>
+        <TimerProgress isUrgent={isLowTime} percentage={percentage} />
+      </TimerBar>
+    </TimerContainer>
   );
 };
 

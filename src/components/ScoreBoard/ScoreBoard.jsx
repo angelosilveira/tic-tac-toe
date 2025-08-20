@@ -26,21 +26,24 @@ const ScoreBoard = ({ scores, onReset }) => {
   useEffect(() => {
     if (playerXScore > 0) {
       setAnimateX(true);
-      setTimeout(() => setAnimateX(false), 300);
+      const timer = setTimeout(() => setAnimateX(false), 300);
+      return () => clearTimeout(timer);
     }
   }, [playerXScore]);
 
   useEffect(() => {
     if (playerOScore > 0) {
       setAnimateO(true);
-      setTimeout(() => setAnimateO(false), 300);
+      const timer = setTimeout(() => setAnimateO(false), 300);
+      return () => clearTimeout(timer);
     }
   }, [playerOScore]);
 
   useEffect(() => {
     if (draws > 0) {
       setAnimateDraw(true);
-      setTimeout(() => setAnimateDraw(false), 300);
+      const timer = setTimeout(() => setAnimateDraw(false), 300);
+      return () => clearTimeout(timer);
     }
   }, [draws]);
 
@@ -59,7 +62,7 @@ const ScoreBoard = ({ scores, onReset }) => {
             <PlayerSymbol player="x">X</PlayerSymbol>
             <span>Jogador X</span>
           </ScoreLabel>
-          <ScoreValue updated={animateX} key={playerXScore}>
+          <ScoreValue updated={animateX ? true : undefined} key={playerXScore}>
             {playerXScore}
           </ScoreValue>
         </ScoreItem>
@@ -69,7 +72,7 @@ const ScoreBoard = ({ scores, onReset }) => {
             <PlayerSymbol player="o">O</PlayerSymbol>
             <span>Jogador O</span>
           </ScoreLabel>
-          <ScoreValue updated={animateO} key={playerOScore}>
+          <ScoreValue updated={animateO ? true : undefined} key={playerOScore}>
             {playerOScore}
           </ScoreValue>
         </ScoreItem>
@@ -79,7 +82,7 @@ const ScoreBoard = ({ scores, onReset }) => {
             <Users size={16} />
             <span>Empates</span>
           </ScoreLabel>
-          <ScoreValue updated={animateDraw} key={draws}>
+          <ScoreValue updated={animateDraw ? true : undefined} key={draws}>
             {draws}
           </ScoreValue>
         </ScoreItem>

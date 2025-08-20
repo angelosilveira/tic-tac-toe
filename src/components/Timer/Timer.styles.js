@@ -63,7 +63,10 @@ export const TimeDisplay = styled.div`
   align-items: center;
 `;
 
-export const TimeNumber = styled.span`
+export const TimeNumber = styled.span.attrs((props) => {
+  const { isLowTime: _, ...rest } = props;
+  return rest;
+})`
   font-size: 1.25rem;
   font-weight: bold;
   color: var(--color-textPrimary, #1f2937);
@@ -88,7 +91,10 @@ export const TimerBar = styled.div`
   overflow: hidden;
 `;
 
-export const TimerProgress = styled.div`
+export const TimerProgress = styled.div.attrs((props) => {
+  const { isUrgent: _, ...rest } = props;
+  return rest;
+})`
   height: 100%;
   background: ${(props) =>
     props.isUrgent ? "#ef4444" : "var(--color-secondary, #10b981)"};

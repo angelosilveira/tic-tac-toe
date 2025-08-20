@@ -9,7 +9,7 @@ const Square = ({
   disabled = false,
 }) => {
   const handleClick = () => {
-    if (!disabled && !value) {
+    if (!value) {
       onClick(index);
     }
   };
@@ -31,6 +31,7 @@ const Square = ({
       aria-label={`Quadrado ${index + 1}${
         value ? `, ocupado por ${value}` : ", vazio"
       }`}
+      data-winning={isWinning}
     >
       {value && <Mark value={value}>{value}</Mark>}
     </SquareButton>

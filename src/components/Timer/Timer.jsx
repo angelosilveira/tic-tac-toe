@@ -20,7 +20,7 @@ const Timer = ({ timeLeft, currentPlayer }) => {
     <TimerContainer>
       <TimerContent>
         <TimerIcon>
-          <Clock size={20} />
+          <Clock size={20} data-testid="timer-clock-icon" />
         </TimerIcon>
         <TimerInfo>
           <PlayerTurn>Vez do jogador {currentPlayer}</PlayerTurn>
@@ -31,7 +31,11 @@ const Timer = ({ timeLeft, currentPlayer }) => {
       </TimerContent>
 
       <TimerBar>
-        <TimerProgress isUrgent={isLowTime} percentage={percentage} />
+        <TimerProgress
+          data-testid="timer-progress"
+          isUrgent={isLowTime}
+          style={{ width: `${percentage}%` }}
+        />
       </TimerBar>
     </TimerContainer>
   );

@@ -3,7 +3,6 @@ import { useGameLogic } from "./hooks/useGameLogic";
 import { useTimer } from "./hooks/useTimer";
 import { useColorTheme } from "./hooks/useColorTheme";
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import ColorMenu from "./components/ColorMenu";
 import GameBoard from "./components/GameBoard";
 import Timer from "./components/Timer";
 import ScoreBoard from "./components/ScoreBoard";
@@ -35,7 +34,6 @@ export default function App() {
     playerOScore: 0,
     draws: 0,
   });
-  const [isColorMenuOpen, setIsColorMenuOpen] = useState(false);
 
   const {
     board,
@@ -48,8 +46,7 @@ export default function App() {
     autoMove,
   } = useGameLogic();
 
-  const { currentTheme, presetThemes, selectPresetTheme, updateColor } =
-    useColorTheme();
+  const { currentTheme, presetThemes, selectPresetTheme } = useColorTheme();
 
   const { timeLeft, isActive, startTimer, stopTimer, resetTimer } = useTimer(
     5,
@@ -211,14 +208,6 @@ export default function App() {
           </RightPanel>
         </GameLayout>
       </GameContainer>
-
-      <ColorMenu
-        isOpen={isColorMenuOpen}
-        onToggle={() => setIsColorMenuOpen(!isColorMenuOpen)}
-        theme={currentTheme}
-        onThemeChange={{ selectPresetTheme, updateColor }}
-        presetThemes={presetThemes}
-      />
     </GameWrapper>
   );
 }

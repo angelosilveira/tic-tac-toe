@@ -1,6 +1,10 @@
 # Jogo da Velha (Tic Tac Toe)
 
-Um jogo da velha moderno e interativo construído com React, apresentando uma interface elegante, temas personalizáveis e funcionalidades avançadas.
+Um jogo da velha moderno e interativo construído com React, apresentando uma interface elegante, temas personalizáveis e funcionalidades avançadas. O projeto foi desenvolvido com foco em boas práticas, testes automatizados e performance.
+
+## 📖 Visão Geral
+
+Este projeto é uma implementação moderna do clássico Jogo da Velha, desenvolvido com React e tecnologias atuais do ecossistema frontend. O foco principal foi criar uma experiência de usuário fluida e agradável, mantendo o código limpo, testável e manutenível.
 
 ![Jogo da Velha Preview]
 
